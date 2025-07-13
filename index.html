@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <title>പ്രാർഥനാ ട്രാക്കർ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- പശ്ചാത്തല വീഡിയോ -->
+  <video autoplay muted loop id="bg-video">
+    <source src="assets/video.mp4" type="video/mp4">
+    നിങ്ങളുടെ ബ്രൗസർ വീഡിയോ പിന്തുണയ്ക്കുന്നില്ല.
+  </video>
+
+  <div class="overlay"></div>
+
+  <!-- പ്രാർത്ഥനാ സമർപ്പണ ഫോം -->
+  <div class="form-container">
+    <h2>🕌 Prayer Submission</h2>
+    <form id="prayerForm">
+      <label>തരം:</label>
+      <input type="text" id="class" placeholder="ക്ലാസ് പേര് നൽകുക" required>
+
+      <label>ലിംഗം:</label>
+      <div class="gender-options">
+        <input type="radio" name="gender" id="male" value="male" required hidden>
+        <label for="male" class="gender-box">ആൺ</label>
+
+        <input type="radio" name="gender" id="female" value="female" hidden>
+        <label for="female" class="gender-box">പെൺ</label>
+      </div>
+
+      <label>പേര്:</label>
+      <select id="name" required>
+        <option value="">-- പേരെ തിരഞ്ഞെടുക്കുക --</option>
+      </select>
+
+      <label>തിയതി:</label>
+      <input type="date" id="date" required>
+
+      <fieldset class="prayers-box">
+        <legend>നമസ്‌കാരങ്ങൾ</legend>
+
+        <input type="checkbox" id="fajr" hidden>
+        <label for="fajr" class="prayer-option">ഫജർ</label>
+
+        <input type="checkbox" id="dhuhr" hidden>
+        <label for="dhuhr" class="prayer-option">ദുഹർ</label>
+
+        <input type="checkbox" id="asr" hidden>
+        <label for="asr" class="prayer-option">അസർ</label>
+
+        <input type="checkbox" id="maghrib" hidden>
+        <label for="maghrib" class="prayer-option">മഗ്റിബ്</label>
+
+        <input type="checkbox" id="isha" hidden>
+        <label for="isha" class="prayer-option">ഇഷാ</label>
+      </fieldset>
+
+      <button type="submit">സമർപ്പിക്കുക</button>
+    </form>
+  </div>
+
+  <!-- TOP 10 പട്ടിക -->
+  <div id="top10">
+    <h3>മുകളിൽ 10 വിദ്യാർത്ഥികൾ</h3>
+    <ul id="rankList"></ul>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
