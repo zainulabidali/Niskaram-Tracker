@@ -18,10 +18,10 @@
 
   <!-- പ്രാർത്ഥനാ സമർപ്പണ ഫോം -->
   <div class="form-container">
-    <h2>🕌 Prayer Submission</h2>
+    <h2>🕌 പ്രാർഥനാ സമർപ്പണം</h2>
     <form id="prayerForm">
       <label>തരം:</label>
-      <input type="text" id="class" placeholder="ക്ലാസ് പേര് നൽകുക" required>
+      <input type="number" id="class" placeholder="ക്ലാസ്" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 
       <label>ലിംഗം:</label>
       <div class="gender-options">
@@ -42,7 +42,6 @@
 
       <fieldset class="prayers-box">
         <legend>നമസ്‌കാരങ്ങൾ</legend>
-
         <input type="checkbox" id="fajr" hidden>
         <label for="fajr" class="prayer-option">ഫജർ</label>
 
@@ -68,6 +67,29 @@
     <h3>മുകളിൽ 10 വിദ്യാർത്ഥികൾ</h3>
     <ul id="rankList"></ul>
   </div>
+
+  <div id="history-section">
+  <h3>📜 കുട്ടികളുടെ മുഴുവൻ പ്രാർഥനാ ഹിസ്റ്ററി</h3>
+  <div class="table-wrapper">
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th>പേര്</th>
+          <th>തീയതി</th>
+          <th>ഫജർ</th>
+          <th>ദുഹർ</th>
+          <th>അസർ</th>
+          <th>മഗ്രിബ്</th>
+          <th>ഇഷാ</th>
+          <th>സ്കോർ</th>
+          <th>മൊത്തം സ്കോർ</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
 
   <script type="module" src="script.js"></script>
 </body>

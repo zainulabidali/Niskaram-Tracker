@@ -153,3 +153,42 @@ input[type="checkbox"]:checked + .prayer-option {
   padding: 10px;
   border-radius: 6px;
 }
+#history-section {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+#history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+#history-table th,
+#history-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#history-table th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  #history-table {
+    font-size: 12px;
+  }
+}
