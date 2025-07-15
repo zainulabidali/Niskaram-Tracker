@@ -245,3 +245,6 @@ input[type="checkbox"]:checked + .prayer-option {
     justify-content: center;
   }
 }
+input[type="radio"] {
+  display: none;
+}
