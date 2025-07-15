@@ -23,7 +23,7 @@
     <h2>🕌 പ്രാർഥനാ സമർപ്പണം</h2>
     <form id="prayerForm">
       <label>തരം:</label>
-      <input type="number" id="class" placeholder="ക്ലാസ്" required oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+      <input type="number" id="class" placeholder="ക്ലാസ്" required oninput="this.value=this.value.replace(/[^3-3]/g,'');">
 
       <label>ലിംഗം:</label>
       <div class="gender-options">
@@ -45,16 +45,16 @@
       <fieldset class="prayers-box">
         <legend>നമസ്‌കാരങ്ങൾ</legend>
         <input type="checkbox" id="fajr" hidden>
-        <label for="fajr" class="prayer-option">ഫജർ</label>
+        <label for="fajr" class="prayer-option">സുബഹ്</label>
 
         <input type="checkbox" id="dhuhr" hidden>
-        <label for="dhuhr" class="prayer-option">ദുഹർ</label>
+        <label for="dhuhr" class="prayer-option">ളുഹ്ർ</label>
 
         <input type="checkbox" id="asr" hidden>
         <label for="asr" class="prayer-option">അസർ</label>
 
         <input type="checkbox" id="maghrib" hidden>
-        <label for="maghrib" class="prayer-option">മഗ്റിബ്</label>
+        <label for="maghrib" class="prayer-option">മഗരിബ്</label>
 
         <input type="checkbox" id="isha" hidden>
         <label for="isha" class="prayer-option">ഇഷാ</label>
@@ -75,18 +75,19 @@
   <div class="table-wrapper">
     <table id="history-table">
       <thead>
-        <tr>
-          <th>പേര്</th>
-          <th>തീയതി</th>
-          <th>ഫജർ</th>
-          <th>ദുഹർ</th>
-          <th>അസർ</th>
-          <th>മഗ്രിബ്</th>
-          <th>ഇഷാ</th>
-          <th>സ്കോർ</th>
-          <th>മൊത്തം സ്കോർ</th>
-        </tr>
-      </thead>
+  <tr>
+    <th>പേര്</th>
+    <th>തീയതി</th>
+    <th>സുബഹ്</th>
+    <th>ളുഹ്ർ</th>
+    <th>അസർ</th>
+    <th>മഗരിബ്</th>
+    <th>ഇഷാ</th>
+    <th>സ്കോർ</th> <!-- ഈ കോളം ദിവസത്തെ സ്കോർ മാത്രമാകും -->
+    <th>മൊത്തം സ്കോർ</th> <!-- ഈ കോളം മുഴുവൻ total score -->
+  </tr>
+</thead>
+
       <tbody></tbody>
     </table>
   </div>

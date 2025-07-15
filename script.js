@@ -1,8 +1,8 @@
 import { database } from './firebase.js';
 import { ref, set, get } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
 
-const maleStudents = ['Ahmed', 'Bilal', 'Faisal', 'Imran', 'Yusuf', 'Zayd', 'Nashid', 'Haneef', 'Salih', 'Jabir'];
-const femaleStudents = ['Amina', 'Fatima', 'Huda', 'Nadia', 'Sumayya', 'Leena', 'Maryam', 'Salma', 'Afra', 'Lubna', 'Rania', 'Shaima'];
+const maleStudents = [ 'Ibrahim Bathisha ','Muhammed SM', 'Abdulla MA', 'Muhammed Javad MA', 'Nasrul Azman', 'Muhammed Musthafa', 'Kubaib', 'Muhammed Swalih', 'Abdulla Mirshad', 'Muhammed Saeed','Zakwan','Adham Abdulla'];
+const femaleStudents = ['Ayshath Muneeba', 'Maryam CA', 'Maryam Zahra', 'Maryam Ahmed Naseer', 'Fathimath Shifa', 'Rifa Fathima', 'Ayshath Shaza', 'Shama Fathima', 'Fathimath Shanza Mahzin', 'Maryam Mehk', ];
 
 const genderRadios = document.getElementsByName('gender');
 const nameSelect = document.getElementById('name');
@@ -117,20 +117,20 @@ function updateRanking() {
 }
 
 updateRanking();
+
 function loadFullHistory() {
   const historyBody = document.querySelector('#history-table tbody');
   historyBody.innerHTML = '';
-
-  const allStudents = [...maleStudents.map(n => ({ name: n, gender: 'male' })), ...femaleStudents.map(n => ({ name: n, gender: 'female' }))];
-  const totalScores = {}; // name => totalScore
 
   const rootRef = ref(database, `prayers`);
   get(rootRef).then(snapshot => {
     if (!snapshot.exists()) return;
 
     const data = snapshot.val();
+    const totalScores = {}; // name => totalScore
+    const historyRows = [];
 
-    // First, compute total scores
+    // Step 1: First, calculate total scores
     for (const date in data) {
       for (const name in data[date]) {
         const entry = data[date][name];
@@ -139,13 +139,11 @@ function loadFullHistory() {
       }
     }
 
-    // Combine history rows
-    const historyRows = [];
-
+    // Step 2: Build per-day entries
     for (const date in data) {
       for (const name in data[date]) {
         const entry = data[date][name];
-        const row = {
+        historyRows.push({
           name,
           date,
           fajr: entry.fajr ? '✅' : '❌',
@@ -153,23 +151,22 @@ function loadFullHistory() {
           asr: entry.asr ? '✅' : '❌',
           maghrib: entry.maghrib ? '✅' : '❌',
           isha: entry.isha ? '✅' : '❌',
-          score: entry.score || 0,
+          score: entry.score || 0, // ✅ ഈ score ആ ദിവസത്തെ score മാത്രമാണ്
           total: totalScores[name] || 0,
           gender: entry.gender || ''
-        };
-        historyRows.push(row);
+        });
       }
     }
 
-    // Sort: male first, then female, then by total score desc
+    // Sort: male first, then female, then by date
     historyRows.sort((a, b) => {
       if (a.gender !== b.gender) {
         return a.gender === 'male' ? -1 : 1;
       }
-      return b.total - a.total;
+      return a.date.localeCompare(b.date);
     });
 
-    // Build rows
+    // Step 3: Render rows
     historyRows.forEach(item => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -180,13 +177,14 @@ function loadFullHistory() {
         <td>${item.asr}</td>
         <td>${item.maghrib}</td>
         <td>${item.isha}</td>
-        <td>${item.score}</td>
-        <td><strong>${item.total}</strong></td>
+        <td>${item.score}</td> <!-- ✅ ദിവസത്തെ score മാത്രം -->
+        <td><strong>${item.total}</strong></td> <!-- ✅ മൊത്തം score -->
       `;
       historyBody.appendChild(tr);
     });
   });
 }
+
 window.addEventListener('DOMContentLoaded', () => {
   updateRanking();
   loadFullHistory();
