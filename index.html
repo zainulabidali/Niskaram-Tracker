@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ml">
+
 <head>
   <meta charset="UTF-8">
   <title>പ്രാർഥനാ ട്രാക്കർ</title>
@@ -8,6 +9,7 @@
   <script src="https://kit.fontawesome.com/6abcf7d68e.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
 
   <!-- പശ്ചാത്തല വീഡിയോ -->
@@ -23,15 +25,16 @@
     <h2>🕌 പ്രാർഥനാ സമർപ്പണം</h2>
     <form id="prayerForm">
       <label>തരം:</label>
-      <input type="number" id="class" placeholder="ക്ലാസ്" required oninput="this.value=this.value.replace(/[^3-3]/g,'');">
+      <input type="number" id="class" placeholder="ക്ലാസ്" required
+        oninput="this.value=this.value.replace(/[^3-3]/g,'');">
 
       <label>ലിംഗം:</label>
       <div class="gender-options">
         <input type="radio" name="gender" id="male" value="male" required>
-<label for="male" class="gender-box">ആൺ</label>
+        <label for="male" class="gender-box">ആൺ</label>
 
-<input type="radio" name="gender" id="female" value="female">
-<label for="female" class="gender-box">പെൺ</label>
+        <input type="radio" name="gender" id="female" value="female">
+        <label for="female" class="gender-box">പെൺ</label>
 
       </div>
 
@@ -72,54 +75,57 @@
   </div>
 
   <div id="history-section">
-  <h3>📜 കുട്ടികളുടെ മുഴുവൻ പ്രാർഥനാ ഹിസ്റ്ററി</h3>
-  <div class="table-wrapper">
-    <table id="history-table">
-      <thead>
-  <tr>
-    <th>പേര്</th>
-    <th>തീയതി</th>
-    <th>സുബഹ്</th>
-    <th>ളുഹ്ർ</th>
-    <th>അസർ</th>
-    <th>മഗരിബ്</th>
-    <th>ഇഷാ</th>
-    <th>സ്കോർ</th> <!-- ഈ കോളം ദിവസത്തെ സ്കോർ മാത്രമാകും -->
-    <th>മൊത്തം സ്കോർ</th> <!-- ഈ കോളം മുഴുവൻ total score -->
-  </tr>
-</thead>
+    <h3>📜 കുട്ടികളുടെ മുഴുവൻ പ്രാർഥനാ ഹിസ്റ്ററി</h3>
+    <div class="table-wrapper">
+      <table id="history-table">
+        <thead>
+          <tr>
+            <th>പേര്</th>
+            <th>തീയതി</th>
+            <th>സുബഹ്</th>
+            <th>ളുഹ്ർ</th>
+            <th>അസർ</th>
+            <th>മഗരിബ്</th>
+            <th>ഇഷാ</th>
+            <th>സ്കോർ</th> <!-- ഈ കോളം ദിവസത്തെ സ്കോർ മാത്രമാകും -->
+            <th>മൊത്തം സ്കോർ</th> <!-- ഈ കോളം മുഴുവൻ total score -->
+          </tr>
+        </thead>
 
-      <tbody></tbody>
-    </table>
-  </div>
-</div>
-
-
-
-<footer id="footer" class="footer position-relative dark-background" style="background: #111; color: #fff; padding: 30px 0;">
-
-  <div class="copyright text-center">
-    <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
-
-      <div class="d-flex flex-column align-items-center align-items-lg-start mb-3 mb-lg-0">
-        <div>
-          © <span id="year"></span> <strong><span>Zyn</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          Designed by <a href="https://instagram.com/zainul_abid_himami" target="_blank">Zainul Abid Himami</a>
-        </div>
-      </div>
-
-   
-
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 
-</footer>
+
+
+  <footer id="footer" class="footer position-relative dark-background"
+    style="background: #111; color: #fff; padding: 30px 0;">
+
+    <div class="copyright text-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+        <div class="d-flex flex-column align-items-center align-items-lg-start mb-3 mb-lg-0">
+          <div>
+            © <span id="year"></span> <strong><span>Zyn</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+            Designed by <a href="https://instagram.com/zainul_abid_himami" target="_blank">Zainul Abid Himami</a>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </footer>
 
 
 
 
   <script type="module" src="script.js"></script>
 </body>
+
 </html>

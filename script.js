@@ -117,7 +117,6 @@ function updateRanking() {
 }
 
 updateRanking();
-
 function loadFullHistory() {
   const historyBody = document.querySelector('#history-table tbody');
   historyBody.innerHTML = '';
@@ -130,7 +129,7 @@ function loadFullHistory() {
     const totalScores = {}; // name => totalScore
     const historyRows = [];
 
-    // Step 1: First, calculate total scores
+    // Step 1: Calculate total scores
     for (const date in data) {
       for (const name in data[date]) {
         const entry = data[date][name];
@@ -139,7 +138,7 @@ function loadFullHistory() {
       }
     }
 
-    // Step 2: Build per-day entries
+    // Step 2: Create per-day entries
     for (const date in data) {
       for (const name in data[date]) {
         const entry = data[date][name];
@@ -151,22 +150,25 @@ function loadFullHistory() {
           asr: entry.asr ? '✅' : '❌',
           maghrib: entry.maghrib ? '✅' : '❌',
           isha: entry.isha ? '✅' : '❌',
-          score: entry.score || 0, // ✅ ഈ score ആ ദിവസത്തെ score മാത്രമാണ്
+          score: entry.score || 0,
           total: totalScores[name] || 0,
           gender: entry.gender || ''
         });
       }
     }
 
-    // Sort: male first, then female, then by date
+    // Step 3: Sorting (date descending → male first → name)
     historyRows.sort((a, b) => {
-      if (a.gender !== b.gender) {
-        return a.gender === 'male' ? -1 : 1;
+      if (a.date !== b.date) {
+        return b.date.localeCompare(a.date); // Newer date first
       }
-      return a.date.localeCompare(b.date);
+      if (a.gender !== b.gender) {
+        return a.gender === 'male' ? -1 : 1; // Male first
+      }
+      return a.name.localeCompare(b.name); // Name as final tiebreaker
     });
 
-    // Step 3: Render rows
+    // Step 4: Render
     historyRows.forEach(item => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -177,8 +179,8 @@ function loadFullHistory() {
         <td>${item.asr}</td>
         <td>${item.maghrib}</td>
         <td>${item.isha}</td>
-        <td>${item.score}</td> <!-- ✅ ദിവസത്തെ score മാത്രം -->
-        <td><strong>${item.total}</strong></td> <!-- ✅ മൊത്തം score -->
+        <td>${item.score}</td>
+        <td><strong>${item.total}</strong></td>
       `;
       historyBody.appendChild(tr);
     });
