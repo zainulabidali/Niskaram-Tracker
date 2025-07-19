@@ -86,8 +86,6 @@ form.addEventListener('submit', function (e) {
     updateRanking();
   });
 });
-
-// Top 10 Ranking
 function updateRanking() {
   const today = new Date().toISOString().slice(0, 10);
   const dayRef = ref(database, `prayers/${today}`);
@@ -108,84 +106,93 @@ function updateRanking() {
       .slice(0, 10);
 
     rankList.innerHTML = '';
-    sorted.forEach(([name, score]) => {
+    sorted.forEach(([name, score], index) => {
       const li = document.createElement('li');
-      li.textContent = `${name} - ${score} മാർക്ക്`;
+
+      let icon = '';
+      if (index === 0) icon = '🏆';
+      else if (index === 1) icon = '🥈';
+      else if (index === 2) icon = '🥉';
+      else icon = '🔹';
+
+      li.textContent = `${index + 1}. ${icon} ${name} - ${score} മാർക്ക്`;
       rankList.appendChild(li);
     });
   });
 }
 
 updateRanking();
-function loadFullHistory() {
-  const historyBody = document.querySelector('#history-table tbody');
-  historyBody.innerHTML = '';
 
-  const rootRef = ref(database, `prayers`);
-  get(rootRef).then(snapshot => {
-    if (!snapshot.exists()) return;
 
-    const data = snapshot.val();
-    const totalScores = {}; // name => totalScore
-    const historyRows = [];
+// function loadFullHistory() {
+//   const historyBody = document.querySelector('#history-table tbody');
+//   historyBody.innerHTML = '';
 
-    // Step 1: Calculate total scores
-    for (const date in data) {
-      for (const name in data[date]) {
-        const entry = data[date][name];
-        if (!totalScores[name]) totalScores[name] = 0;
-        totalScores[name] += entry.score || 0;
-      }
-    }
+//   const rootRef = ref(database, `prayers`);
+//   get(rootRef).then(snapshot => {
+//     if (!snapshot.exists()) return;
 
-    // Step 2: Create per-day entries
-    for (const date in data) {
-      for (const name in data[date]) {
-        const entry = data[date][name];
-        historyRows.push({
-          name,
-          date,
-          fajr: entry.fajr ? '✅' : '❌',
-          dhuhr: entry.dhuhr ? '✅' : '❌',
-          asr: entry.asr ? '✅' : '❌',
-          maghrib: entry.maghrib ? '✅' : '❌',
-          isha: entry.isha ? '✅' : '❌',
-          score: entry.score || 0,
-          total: totalScores[name] || 0,
-          gender: entry.gender || ''
-        });
-      }
-    }
+//     const data = snapshot.val();
+//     const totalScores = {}; // name => totalScore
+//     const historyRows = [];
 
-    // Step 3: Sorting (date descending → male first → name)
-    historyRows.sort((a, b) => {
-      if (a.date !== b.date) {
-        return b.date.localeCompare(a.date); // Newer date first
-      }
-      if (a.gender !== b.gender) {
-        return a.gender === 'male' ? -1 : 1; // Male first
-      }
-      return a.name.localeCompare(b.name); // Name as final tiebreaker
-    });
+//     // Step 1: Calculate total scores
+//     for (const date in data) {
+//       for (const name in data[date]) {
+//         const entry = data[date][name];
+//         if (!totalScores[name]) totalScores[name] = 0;
+//         totalScores[name] += entry.score || 0;
+//       }
+//     }
 
-    // Step 4: Render
-    historyRows.forEach(item => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${item.name}</td>
-        <td>${item.date}</td>
-        <td>${item.fajr}</td>
-        <td>${item.dhuhr}</td>
-        <td>${item.asr}</td>
-        <td>${item.maghrib}</td>
-        <td>${item.isha}</td>
-        <td>${item.score}</td>
-        <td><strong>${item.total}</strong></td>
-      `;
-      historyBody.appendChild(tr);
-    });
-  });
-}
+//     // Step 2: Create per-day entries
+//     for (const date in data) {
+//       for (const name in data[date]) {
+//         const entry = data[date][name];
+//         historyRows.push({
+//           name,
+//           date,
+//           fajr: entry.fajr ? '✅' : '❌',
+//           dhuhr: entry.dhuhr ? '✅' : '❌',
+//           asr: entry.asr ? '✅' : '❌',
+//           maghrib: entry.maghrib ? '✅' : '❌',
+//           isha: entry.isha ? '✅' : '❌',
+//           score: entry.score || 0,
+//           total: totalScores[name] || 0,
+//           gender: entry.gender || ''
+//         });
+//       }
+//     }
+
+//     // Step 3: Sorting (date descending → male first → name)
+//     historyRows.sort((a, b) => {
+//       if (a.date !== b.date) {
+//         return b.date.localeCompare(a.date); // Newer date first
+//       }
+//       if (a.gender !== b.gender) {
+//         return a.gender === 'male' ? -1 : 1; // Male first
+//       }
+//       return a.name.localeCompare(b.name); // Name as final tiebreaker
+//     });
+
+//     // Step 4: Render
+//     historyRows.forEach(item => {
+//       const tr = document.createElement('tr');
+//       tr.innerHTML = `
+//         <td>${item.name}</td>
+//         <td>${item.date}</td>
+//         <td>${item.fajr}</td>
+//         <td>${item.dhuhr}</td>
+//         <td>${item.asr}</td>
+//         <td>${item.maghrib}</td>
+//         <td>${item.isha}</td>
+//         <td>${item.score}</td>
+//         <td><strong>${item.total}</strong></td>
+//       `;
+//       historyBody.appendChild(tr);
+//     });
+//   });
+// }
 
 window.addEventListener('DOMContentLoaded', () => {
   updateRanking();
