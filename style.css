@@ -129,14 +129,7 @@ input[type="checkbox"]:checked + .prayer-option {
 }
 
 /* Top 10 List */
-#top10 {
-  max-width: 420px;
-  margin: 20px auto;
-  background: #fff;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
+
 
 #top10 h3 {
   margin-top: 0;
@@ -248,3 +241,36 @@ input[type="checkbox"]:checked + .prayer-option {
 input[type="radio"] {
   display: none;
 }
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.top-card {
+    background: rgba(230, 231, 233, 0.463);
+    padding: 16px 20px;
+    margin: 16px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    font-family: sans-serif;
+  }
+
+  .top-card h4 {
+    margin-bottom: 12px;
+    font-size: 15px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .top-card ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .top-card li {
+    padding: 6px 0;
+    font-size: 16px;
+    color: #222;
+  }
+  

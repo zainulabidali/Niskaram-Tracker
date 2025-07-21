@@ -1,8 +1,8 @@
 import { database } from './firebase.js';
 import { ref, set, get } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
 
-const maleStudents = [ 'Ibrahim Bathisha ','Muhammed SM', 'Abdulla MA', 'Muhammed Javad MA', 'Nasrul Azman', 'Muhammed Musthafa', 'Kubaib', 'Muhammed Swalih', 'Abdulla Mirshad', 'Muhammed Saeed','Zakwan','Adham Abdulla'];
-const femaleStudents = ['Ayshath Muneeba', 'Maryam CA', 'Maryam Zahra', 'Maryam Ahmed Naseer', 'Fathimath Shifa', 'Rifa Fathima', 'Ayshath Shaza', 'Shama Fathima', 'Fathimath Shanza Mahzin', 'Maryam Mehk', ];
+const maleStudents = ['Ibrahim Bathisha ', 'Muhammed SM', 'Abdulla MA', 'Muhammed Javad MA', 'Nasrul Azman', 'Muhammed Musthafa', 'Kubaib', 'Muhammed Swalih', 'Abdulla Mirshad', 'Muhammed Saeed', 'Zakwan', 'Adham Abdulla'];
+const femaleStudents = ['Ayshath Muneeba', 'Maryam CA', 'Maryam Zahra', 'Maryam Ahmed Naseer', 'Fathimath Shifa', 'Rifa Fathima', 'Ayshath Shaza', 'Shama Fathima', 'Fathimath Shanza Mahzin', 'Maryam Mehk',];
 
 const genderRadios = document.getElementsByName('gender');
 const nameSelect = document.getElementById('name');
@@ -86,6 +86,10 @@ form.addEventListener('submit', function (e) {
     updateRanking();
   });
 });
+
+
+
+
 function updateRanking() {
   const today = new Date().toISOString().slice(0, 10);
   const dayRef = ref(database, `prayers/${today}`);
@@ -106,22 +110,140 @@ function updateRanking() {
       .slice(0, 10);
 
     rankList.innerHTML = '';
+
     sorted.forEach(([name, score], index) => {
-      const li = document.createElement('li');
+  const li = document.createElement('li');
+  rankList.appendChild(li); // Add to the list first
 
-      let icon = '';
-      if (index === 0) icon = '🏆';
-      else if (index === 1) icon = '🥈';
-      else if (index === 2) icon = '🥉';
-      else icon = '🔹';
+  let icon = '';
+  if (index === 0) icon = '🏆';
+  else if (index === 1) icon = '🥈';
+  else if (index === 2) icon = '🥉';
+  else icon = '🔹';
 
-      li.textContent = `${index + 1}. ${icon} ${name} - ${score} മാർക്ക്`;
-      rankList.appendChild(li);
-    });
+  const fullText = ` ${icon} ${name} - ${score} മാർക്ക്`;
+  let i = 0;
+
+  function typeChar() {
+    if (i <= fullText.length) {
+      li.textContent = fullText.slice(0, i);
+      i++;
+      setTimeout(typeChar, 30); // Typing speed per character
+    }
+  }
+
+  setTimeout(typeChar, index * 200); // Stagger each list item
+});
+
   });
 }
 
 updateRanking();
+
+// topper this week and last week
+function showLastWeekTop() {
+  const today = new Date();
+  const last7Dates = [];
+
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    last7Dates.push(d.toISOString().slice(0, 10));
+  }
+
+  getTopPerformers(last7Dates, 5, 'weekRankList');
+}
+
+function showLastMonthTop() {
+  const today = new Date();
+  const last30Dates = [];
+
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    last30Dates.push(d.toISOString().slice(0, 10));
+  }
+
+  getTopPerformers(last30Dates, 7, 'monthRankList');
+}
+
+function getTopPerformers(dates, topN, elementId) {
+  const rootRef = ref(database, 'prayers');
+
+  get(rootRef).then(snapshot => {
+    if (!snapshot.exists()) return;
+
+    const data = snapshot.val();
+    const scores = {};
+
+    dates.forEach(date => {
+      if (data[date]) {
+        for (const name in data[date]) {
+          if (!scores[name]) scores[name] = 0;
+          scores[name] += data[date][name].score || 0;
+        }
+      }
+    });
+
+    const sorted = Object.entries(scores)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, topN);
+
+    const rankList = document.getElementById(elementId);
+    rankList.innerHTML = '';
+sorted.forEach(([name, score], index) => {
+  const li = document.createElement('li');
+  rankList.appendChild(li);
+
+  let icon = '';
+  if (index === 0) icon = '🏆';
+  else if (index === 1) icon = '🥈';
+  else if (index === 2) icon = '🥉';
+  else icon = '🔹';
+
+  const fullText = `${icon} ${name} - ${score} മാർക്ക്`;
+
+  let i = 0;
+  function typeChar() {
+    if (i <= fullText.length) {
+      li.textContent = fullText.slice(0, i);
+      i++;
+      setTimeout(typeChar, 20); // Adjust speed here (ms per char)
+    }
+  }
+
+  setTimeout(typeChar, index * 500); // Stagger start for each li
+});
+
+  });
+}
+
+// Auto run on page load
+showLastWeekTop();
+showLastMonthTop();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // function loadFullHistory() {
