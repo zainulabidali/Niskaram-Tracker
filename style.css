@@ -246,7 +246,7 @@ ul {
   padding-left: 0;
 }
 .top-card {
-    background: rgba(249, 250, 251, 0.82);
+    background: rgba(249, 250, 251, 0.9);
     padding: 16px 20px;
     margin: 16px auto;
     border-radius: 12px;
@@ -273,4 +273,12 @@ ul {
     font-size: 16px;
     color: #222;
   }
-  
+  .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  pointer-events: none; /* ✅ This line allows clicks to pass through */
+}

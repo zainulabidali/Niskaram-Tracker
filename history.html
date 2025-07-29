@@ -35,91 +35,120 @@
     strong {
       color: #2c3e50;
     }
+
+    select {
+      padding: 6px 12px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
 
-  <div id="history-section">
-    <h3>📜 കുട്ടികളുടെ മുഴുവൻ പ്രാർഥനാ ഹിസ്റ്ററി</h3>
-    <div class="table-wrapper">
-      <table id="history-table">
-        <thead>
-          <tr>
-            <th>പേര്</th>
-            <th>തീയതി</th>
-            <th>സുബഹ്</th>
-            <th>ളുഹ്ർ</th>
-            <th>അസർ</th>
-            <th>മഗരിബ്</th>
-            <th>ഇഷാ</th>
-            <th>സ്കോർ</th>
-            <th>മൊത്തം സ്കോർ</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+  <h3>📜 കുട്ടികളുടെ മുഴുവൻ പ്രാർഥനാ ഹിസ്റ്ററി</h3>
+
+  <!-- 🔽 ക്ലാസ് തിരഞ്ഞെടുക്കാനുള്ള സെലക്ട് -->
+  <label for="classFilter">തരം തിരഞ്ഞെടുക്കുക:</label>
+  <select id="classFilter">
+    <option value="">-- എല്ലാം കാണിക്കുക --</option>
+    <option value="3">3-ാം തരം</option>
+    <option value="4">4-ാം തരം</option>
+    <option value="5">5-ാം തരം</option>
+    <option value="6">6-ാം തരം</option>
+    <option value="7">7-ാം തരം</option>
+    <option value="8">8-ാം തരം</option>
+    <option value="9">9-ാം തരം</option>
+    <option value="10">10-ാം തരം</option>
+  </select>
+
+  <div class="table-wrapper">
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th>പേര്</th>
+          <th>തീയതി</th>
+          <th>സുബഹ്</th>
+          <th>ളുഹ്ർ</th>
+          <th>അസർ</th>
+          <th>മഗരിബ്</th>
+          <th>ഇഷാ</th>
+          <th>സ്കോർ</th>
+          <th>മൊത്തം സ്കോർ</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
+  
 
   <script type="module">
     import { ref, get } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
     import { database } from './firebase.js';
 
     const tableBody = document.querySelector("#history-table tbody");
-    const totalScores = {}; // name -> total score
+    const classFilter = document.getElementById('classFilter');
+    let fullData = {}; // എല്ലാ പ്രാർത്ഥന ഡാറ്റയും ഇവിടെ സ്റ്റോർ ചെയ്യും
 
-   async function loadHistory() {
-  const snapshot = await get(ref(database, 'prayers'));
-  if (!snapshot.exists()) return;
+    async function loadHistory() {
+      const snapshot = await get(ref(database, 'prayers'));
+      if (!snapshot.exists()) return;
 
-  const data = snapshot.val();
-  const totalScores = {}; // name => sum of scores
-
-  // First, calculate total scores for each name across all dates
-  Object.values(data).forEach(students => {
-    Object.entries(students).forEach(([name, prayers]) => {
-      const score = [prayers.fajr, prayers.dhuhr, prayers.asr, prayers.maghrib, prayers.isha]
-        .filter(Boolean).length;
-
-      if (!totalScores[name]) totalScores[name] = 0;
-      totalScores[name] += score;
-    });
-  });
-
-  // Now display rows in date-descending order
-  const sortedDates = Object.keys(data).sort().reverse();
-  for (const date of sortedDates) {
-    const students = data[date];
-    const sortedNames = Object.keys(students).sort(); // optional: alphabetical
-
-    for (const name of sortedNames) {
-      const prayers = students[name];
-      const fajr = prayers.fajr ? "✅" : "❌";
-      const dhuhr = prayers.dhuhr ? "✅" : "❌";
-      const asr = prayers.asr ? "✅" : "❌";
-      const maghrib = prayers.maghrib ? "✅" : "❌";
-      const isha = prayers.isha ? "✅" : "❌";
-
-      const todayScore = [prayers.fajr, prayers.dhuhr, prayers.asr, prayers.maghrib, prayers.isha]
-        .filter(Boolean).length;
-
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td><strong>${name}</strong></td>
-        <td>${date}</td>
-        <td>${fajr}</td>
-        <td>${dhuhr}</td>
-        <td>${asr}</td>
-        <td>${maghrib}</td>
-        <td>${isha}</td>
-        <td>${todayScore}</td>
-        <td>${totalScores[name]}</td>
-      `;
-      tableBody.appendChild(row);
+      fullData = snapshot.val();
+      renderTable(); // മുഴുവൻ ഡാറ്റ വന്നു കഴിഞ്ഞാൽ ആദ്യമായി ടേബിൾ ഫിൽ ചെയ്യുക
     }
-  }
-}
 
+    // 🔁 ക്ലാസ് മാറ്റുമ്പോൾ ടേബിൾ അപ്ഡേറ്റ് ചെയ്യുക
+    classFilter.addEventListener('change', renderTable);
+
+    function renderTable() {
+      tableBody.innerHTML = '';
+      const selectedClass = classFilter.value;
+      const totalScores = {};
+
+      // മൊത്തം സ്കോർ കണക്കാക്കുക
+      Object.values(fullData).forEach(students => {
+        Object.entries(students).forEach(([name, prayers]) => {
+          if (selectedClass && prayers.class !== selectedClass) return;
+          const score = [prayers.fajr, prayers.dhuhr, prayers.asr, prayers.maghrib, prayers.isha].filter(Boolean).length;
+          if (!totalScores[name]) totalScores[name] = 0;
+          totalScores[name] += score;
+        });
+      });
+
+      const sortedDates = Object.keys(fullData).sort().reverse();
+
+      for (const date of sortedDates) {
+        const students = fullData[date];
+        const sortedNames = Object.keys(students).sort();
+
+        for (const name of sortedNames) {
+          const prayers = students[name];
+          if (selectedClass && prayers.class !== selectedClass) continue;
+
+          const fajr = prayers.fajr ? "✅" : "❌";
+          const dhuhr = prayers.dhuhr ? "✅" : "❌";
+          const asr = prayers.asr ? "✅" : "❌";
+          const maghrib = prayers.maghrib ? "✅" : "❌";
+          const isha = prayers.isha ? "✅" : "❌";
+
+          const todayScore = [prayers.fajr, prayers.dhuhr, prayers.asr, prayers.maghrib, prayers.isha].filter(Boolean).length;
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td><strong>${name}</strong></td>
+            <td>${date}</td>
+            <td>${fajr}</td>
+            <td>${dhuhr}</td>
+            <td>${asr}</td>
+            <td>${maghrib}</td>
+            <td>${isha}</td>
+            <td>${todayScore}</td>
+            <td>${totalScores[name]}</td>
+          `;
+          tableBody.appendChild(row);
+        }
+      }
+    }
 
     loadHistory();
   </script>
