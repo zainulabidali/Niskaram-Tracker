@@ -37,7 +37,7 @@ body, html {
   margin: 30px auto;
   max-width: 420px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.9); /* content bg */
+  background-color: rgba(211, 207, 201, 0.9); /* content bg */
   box-shadow: 0 0 15px rgba(0,0,0,0.4);
   backdrop-filter: blur(8px);
   overflow: hidden; /* clip background image */
@@ -49,9 +49,20 @@ body, html {
   position: absolute;
   inset: 0;
   background: url('assets/download.jpg') no-repeat center center / cover;
-  opacity: 0.4; /* 👈 reduce image opacity */
+  opacity: 0.5; /* 👈 reduce image opacity */
   z-index: -1;
 }
+
+#typewriter {
+  font-family: monospace;
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid black;
+  display: inline-block;
+  min-width: 270px; /* Set to length of full string */
+}
+
 
 
 form label, select, input {
@@ -69,7 +80,7 @@ input, select, button {
 }
 
 button {
-  background: #28a745;
+  background: #064e17b4;
   color: white;
   border: none;
   margin-top: 15px;
@@ -77,7 +88,7 @@ button {
 }
 
 button:hover {
-  background: #218838;
+  background: #074110d6;
 }
 
 /* Gender Button Styling */
@@ -99,9 +110,9 @@ button:hover {
 }
 
 input[type="radio"]:checked + .gender-box {
-  background-color: #007bff;
+  background-color: #8e6909;
   color: white;
-  border-color: #007bff;
+  border-color: #ca8906;
 }
 
 /* Prayer Button Styling */
@@ -115,17 +126,17 @@ input[type="radio"]:checked + .gender-box {
   display: inline-block;
   margin: 5px 5px;
   padding: 10px 16px;
-  border: 2px solid #aaa;
+  border: 2px solid #4b000045;
   border-radius: 6px;
-  background: #eee;
+  background: #4a3c1463;
   cursor: pointer;
   transition: 0.2s;
 }
 
 input[type="checkbox"]:checked + .prayer-option {
-  background-color: #ffc107;
-  color: #000;
-  border-color: #ffc107;
+  background-color: #184c00c9;
+  color: #fbfffb;
+  border-color: #008a07;
 }
 
 /* Top 10 List */
@@ -246,7 +257,7 @@ ul {
   padding-left: 0;
 }
 .top-card {
-    background: rgba(249, 250, 251, 0.9);
+    background: rgba(222, 190, 123, 0.546);
     padding: 16px 20px;
     margin: 16px auto;
     border-radius: 12px;

@@ -4,22 +4,36 @@ import { ref, set, get } from "https://www.gstatic.com/firebasejs/11.10.0/fireba
 // ✅ Class-wise students list
 // ✅ Define all lists inside one object
 const allStudents = {
-  students3Male: ['Ibrahim Bathisha ', 'Muhammed SM', 'Abdulla MA', 'Muhammed Javad MA', 'Nasrul Azman', 'Muhammed Musthafa', 'Kubaib', 'Muhammed Swalih', 'Abdulla Mirshad', 'Muhammed Saeed', 'Zakwan', 'Adham Abdulla','✅'],
+  students3Male: ['Ibrahim Bathisha ', 'Muhammed SM', 'Abdulla MA', 'Muhammed Javad MA', 'Nasrul Azman', 'Muhammed Musthafa', 'Kubaib', 'Muhammed Swalih', 'Abdulla Mirshad', 'Muhammed Saeed', 'Zakwan', 'Adham Abdulla', '🛠️'],
   students3Female: ['Ayshath Muneeba', 'Maryam CA', 'Maryam Zahra', 'Maryam Ahmed Naseer', 'Fathimath Shifa', 'Rifa Fathima', 'Ayshath Shaza', 'Shama Fathima', 'Fathimath Shanza Mahzin', 'Maryam Mehk'],
-  students4Male: ['Salih Ashraf', 'Haneef Jasim', 'Ameen Rasheed' ,'✅'],
-  students4Female: ['Fathima Liyana', 'Aysha Hiba', 'Nashwa Muneera'],
-  students5Male: ['Zahid CM', 'Ibrahim Jaleel', 'Sajid Rahman','✅'],
-  students5Female: ['Shifa Nazeera', 'Mehnaz Fathima', 'Shana Labeeba'],
-  students6Male: ['Rashid PK', 'Haris Shah', 'Ameen Yaseen'],
-  students6Female: ['Lubna Shahna', 'Nashida M', 'Sana Thasneem'],
-  students7Male: ['Rauf Nizar', 'Faizal Arshad', 'Shamil Riyas'],
-  students7Female: ['Mehreen', 'Zahra Aneesa', 'Nazwa Shifa'],
-  students8Male: ['Suhail Nazar', 'Ameen Sadhiq', 'Farhan Thameem'],
-  students8Female: ['Nashwa Aneesa', 'Yasna Jaleela', 'Raniya Shahira'],
-  students9Male: ['Nabeel Rahman', 'Fazil Hussain', 'Sameer Bava'],
-  students9Female: ['Shabna Fathima', 'Labeeba Sahar', 'Raniya Musthafa'],
-  students10Male: ['Ibrahim Shan', 'Rizwan Haleem', 'Junaid KM'],
-  students10Female: ['Ariya Shahin', 'Mehnaz Naeema', 'Safwana Zahra']
+
+
+  students4Male: [, '🛠️'],
+  students4Female: [' ',],
+
+
+  students5Male: ['AHMED SHAMIL BK', 'IBRAHIM SAIS CM', 'MUHAMMED FAYIZ BN', 'MUHAMMED ADIL', 'MUHAMMED SHAMMAS S', 'MOIDEEN SHAZ', 'MUHAMMED JAZEEL', 'ABOOBACKAR SIDDIQUE UM', 'MUHAMMED SHAZIM', 'MUHAMMED SHAMMAS M', 'ZAHID ABBAS AA', '🛠️'],
+  students5Female: ['FATHIMA FIDA', 'FATHIMA NOUFEERA KN', 'AYSHA ZAMA MARZIN', 'MARIYAM FABNAZ MA', 'NAFEESATH RIZA KH', 'FATHIMATH ZAKIYYA', 'KADEEJA HADIYA KA', 'AYSHA NOON TK', 'FATHIMA DILNA', 'ASIYA MA', 'AYSHATH RAHEEMA', 'AYSHATH IZHA', 'FATHIMATH FAHEEMA NA', 'FATHIMA CK', 'SHEZA FATHIMA PS', 'FATHIMA FALAQ CA'],
+
+
+  students6Male: ['MUHAMMED SIBLI', 'ABDUL RAHMAN JAVAD', 'RAMEEM ABOOBAKAR', 'LUKMANUL HAKEEM', 'ABDUL KADER ZIDAN', 'MUHAMMED MISBAH', 'ABDUL KADAR MIDLAJ', 'MUHAMMED AJAS', 'SAMMAS ABDULLA', 'AHMAD AJLAL', 'ABDULLA KS', 'ABDUL MAZHAR', 'MUHEENUDEEN SAHAD', 'MUHAMMED SAFI', 'FARHAN ABDULLA', 'ZAYD', 'ZIYAD', 'MUHAMMED ZAYAN', 'NASHITH MUHAMMED', 'ZAHID MUBARAK','🛠️'],
+  students6Female: ['FAHIMA CS', 'FARISA', 'AYSHA S', 'FATHIMA', 'FATHIMATH MUNAZAHA', 'AYSHATH DIYA', 'MARIYAM RUSHDA', 'FATHIMA KA', 'FATHIMATH SAFLA', 'AYISHATH RUSHDA', 'NAFEESATH MISRIYA', 'AYSHATH ZABA', 'RASHA FATHIMA', 'AYSHATH AFREENA', 'SHAMSEERA'],
+
+
+  students7Male: ['🛠️'],
+  students7Female: [],
+
+
+  students8Male: ['SWALIH MUHAZ K.M', 'SOOFI NIHAL T.A', 'MUHAMMED NABEEL E.A', 'MUHYUDHEEN MUBASHIR T.M', 'NIDHAL ABDULLA', 'AYMAN C.A', 'HAMID A.A', 'ABDULLA ANSAF M.M', 'ABDUL KHADER MIKFAR K.M', 'MUHAMMED SHINAS','🛠️'],
+  students8Female: ['FATHIMA C.I', 'FATHIMA U.M', 'FATHIMA NAJA C.A', 'FATHIMA E.A', 'AYSHATH FAZNA D.A', 'FATHIMA NOOHA T.H'],
+
+
+  students9Male: ['SHUHAIM', 'ABDULLA AFEEF', 'ABDULLA FAHZIN', 'MUHAMMED RISHAL', 'AHMED SHAMMAS','🛠️'],
+  students9Female: ['ZAINABATH FAHIMA', 'AYSHATH ASNA', 'FATHIMA FIDHA', 'NADEEMA', 'FATHIMA RUKIYA', 'AYSHATH SAFLA', 'SHAZA MARIYAM', 'AYSHATH AFNA'],
+
+
+  students10Male: ['ABDULLA ASHIQ', 'ABDULLA', 'MOIDHEEN','🛠️'],
+  students10Female: ['NAFEESATH NASBA', 'FATHIMATH THASLEEMA', 'NAFEESATH AMNA', 'NAFEESATH HAFIZA', 'AYSHA BEEVI', 'FATHIMA', 'SHAHZIYA',]
 };
 
 
@@ -107,7 +121,7 @@ form.addEventListener('submit', function (e) {
 
   const entryRef = ref(database, `prayers/${date}/${name}`);
   set(entryRef, data).then(() => {
-    alert('പ്രാർത്ഥന വിജയകരമായി അപ്‌ഡേറ്റ് ചെയ്തു!');
+    alert('🟢 പ്രാർത്ഥന വിജയകരമായി അപ്‌ഡേറ്റ് ചെയ്തു 🟢');
     updateRanking(className);
     showLastWeekTop(className);
     showLastMonthTop(className);

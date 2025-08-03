@@ -12,33 +12,31 @@
 
 <body>
 
-  <!-- പശ്ചാത്തല വീഡിയോ -->
-  <video autoplay muted loop id="bg-video">
-    <source src="assets/video.mp4" type="video/mp4">
-    നിങ്ങളുടെ ബ്രൗസർ വീഡിയോ പിന്തുണയ്ക്കുന്നില്ല.
-  </video>
+  <!-- പശ്ചാത്തല ചിത്രം -->
+  <img src="https://cdn.pixabay.com/photo/2018/05/08/21/38/ramadan-3384043_1280.jpg" alt="പശ്ചാത്തല ചിത്രം"
+    id="bg-image" style="width:100vw; height:100vh; object-fit:cover; position:fixed; top:0; left:0; z-index:-1;">
 
   <div class="overlay"></div>
 
   <!-- പ്രാർത്ഥനാ സമർപ്പണ ഫോം -->
   <div class="form-container">
-    <h2>🕌 പ്രാർഥനാ സമർപ്പണം</h2>
+    <h2 id="typewriterText"></h2>
+
     <form id="prayerForm">
-      <label>തരം:</label>
-<select id="class" required>
-  <option value="">-- ക്ലാസ് തിരഞ്ഞെടുക്കുക --</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="10">10</option>
-</select>
+      <label>ക്ലാസ്-</label>
+      <select id="class" required>
+        <option value="">-- ക്ലാസ് തിരഞ്ഞെടുക്കുക --</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
 
 
-      <label>ലിംഗം:</label>
       <div class="gender-options">
         <input type="radio" name="gender" id="male" value="male" required>
         <label for="male" class="gender-box">ആൺ</label>
@@ -48,7 +46,7 @@
 
       </div>
 
-      <label>പേര്:</label>
+      <label>പേര് </label>
       <select id="name" required>
         <option value="">-- പേരെ തിരഞ്ഞെടുക്കുക --</option>
       </select>
@@ -78,27 +76,27 @@
     </form>
   </div>
 
-<div class="top-card">
-  <h4>ഇന്നത്തെ ടോപ്പർ</h4>
-  <ul id="rankList"></ul>
-</div>
+  <div class="top-card">
+    <h4>ഇന്നത്തെ ടോപ്പർ</h4>
+    <ul id="rankList"></ul>
+  </div>
 
-<div class="top-card">
-  <h4>കഴിഞ്ഞ ആഴ്ചയിലെ ടോപ്പർമാർ</h4>
-  <ul id="weekRankList"></ul>
-</div>
+  <div class="top-card">
+    <h4>കഴിഞ്ഞ ആഴ്ചയിലെ </h4>
+    <ul id="weekRankList"></ul>
+  </div>
 
-<div class="top-card">
-  <h4>കഴിഞ്ഞ മാസം മികച്ച പ്രകടനം</h4>
-  <ul id="monthRankList"></ul>
-</div>
-  
+  <div class="top-card">
+    <h4>കഴിഞ്ഞ മാസം </h4>
+    <ul id="monthRankList"></ul>
+  </div>
+
 
 
   <!-- ഹിസ്റ്ററി ബട്ടൺ -->
   <div style="text-align: center; margin: 40px 0;">
     <a href="history.html" style="
-      background-color: #1e88e5;
+      background-color: #81630e;
       color: white;
       padding: 12px 24px;
       border-radius: 8px;
@@ -106,36 +104,52 @@
       text-decoration: none;
       display: inline-block;
       transition: background-color 0.3s;
-    " onmouseover="this.style.backgroundColor='#1565c0'" onmouseout="this.style.backgroundColor='#1e88e5'">
-      📊 ഹിസ്റ്ററി ടേബിൾ കാണുക
+    " onmouseover="this.style.backgroundColor='#81630e'" onmouseout="this.style.backgroundColor='#a17c15'">
+      ഹിസ്റ്ററി ടേബിൾ കാണുക 📊
     </a>
   </div>
 
 
 
-<footer id="footer" class="footer position-relative dark-background"
-  style="background: #111; color: #fff; padding: 30px 0; z-index: 10; position: relative;">
+  <footer id="footer" class="footer position-relative dark-background"
+    style="background: #111; color: #fff; padding: 30px 0; z-index: 10; position: relative;">
 
-  <div class="copyright text-center">
-    <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
-      <div class="d-flex flex-column align-items-center align-items-lg-start mb-3 mb-lg-0">
-        <div>
-          © <span id="year"></span> <strong><span>Zyn</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          Designed by 
-          <a href="https://instagram.com/zainul_abid_himami" target="_blank" 
-             style="color: #ba813c; font-size: medium; display: inline-block; padding: 8px;">
-            Zainul Abid Himami
-          </a>
+    <div class="copyright text-center">
+      <div
+        class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+        <div class="d-flex flex-column align-items-center align-items-lg-start mb-3 mb-lg-0">
+          <div>
+            © <span id="year"></span> <strong><span>Zyn</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+            Designed by
+            <a href="https://instagram.com/zainul_abid_himami" target="_blank"
+              style="color: #ba813c; font-size: medium; display: inline-block; padding: 8px;">
+              Zainul Abid Himami
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</footer>
+  </footer>
 
 
+  <script>
+    const text = "🕌 Daily Prayer Tracker";
+    const element = document.getElementById("typewriterText");
+
+    let i = 0;
+
+    function typeOnce() {
+      if (i <= text.length) {
+        element.textContent = text.substring(0, i++);
+        setTimeout(typeOnce, 100);
+      }
+    }
+
+    typeOnce();
+  </script>
 
 
 

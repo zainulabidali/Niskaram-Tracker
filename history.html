@@ -46,11 +46,49 @@
 <body>
 
   <h3>📜 കുട്ടികളുടെ മുഴുവൻ പ്രാർഥനാ ഹിസ്റ്ററി</h3>
+  <br>
 
   <!-- 🔽 ക്ലാസ് തിരഞ്ഞെടുക്കാനുള്ള സെലക്ട് -->
-  <label for="classFilter">തരം തിരഞ്ഞെടുക്കുക:</label>
+<style>
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .filter-section label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #6d0101;
+  }
+
+  .filter-section select {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 6px;
+    border: 1px solid #271e1e;
+    background-color: #d4dee7d9;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='%23666'%20d='M2%200L0%202h4L2%200zm0%205L0%203h4l-2%202z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 30px center;
+    background-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    .filter-section select {
+      font-size: 18px;
+      padding: 12px;
+    }
+  }
+</style>
+
+<div class="filter-section">
+  <label for="classFilter" style="text-align:center; display:block;">ക്ലാസ് തിരഞ്ഞെടുക്കുക:</label>
   <select id="classFilter">
-    <option value="">-- എല്ലാം കാണിക്കുക --</option>
+    <option >-- ക്ലാസ് --</option>
     <option value="3">3-ാം തരം</option>
     <option value="4">4-ാം തരം</option>
     <option value="5">5-ാം തരം</option>
@@ -60,6 +98,8 @@
     <option value="9">9-ാം തരം</option>
     <option value="10">10-ാം തരം</option>
   </select>
+</div>
+
 
   <div class="table-wrapper">
     <table id="history-table">
