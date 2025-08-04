@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -37,10 +38,12 @@ body, html {
   margin: 30px auto;
   max-width: 420px;
   border-radius: 10px;
-  background-color: rgba(211, 207, 201, 0.9); /* content bg */
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  background-color: rgba(211, 207, 201, 0.9);
+  /* content bg */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
-  overflow: hidden; /* clip background image */
+  overflow: hidden;
+  /* clip background image */
 }
 
 /* background image with opacity */
@@ -49,7 +52,8 @@ body, html {
   position: absolute;
   inset: 0;
   background: url('assets/download.jpg') no-repeat center center / cover;
-  opacity: 0.5; /* 👈 reduce image opacity */
+  opacity: 0.5;
+  /* 👈 reduce image opacity */
   z-index: -1;
 }
 
@@ -60,18 +64,23 @@ body, html {
   overflow: hidden;
   border-right: 3px solid black;
   display: inline-block;
-  min-width: 270px; /* Set to length of full string */
+  min-width: 270px;
+  /* Set to length of full string */
 }
 
 
 
-form label, select, input {
+form label,
+select,
+input {
   display: block;
   margin-top: 10px;
   width: 100%;
 }
 
-input, select, button {
+input,
+select,
+button {
   padding: 10px;
   font-size: 16px;
   border-radius: 6px;
@@ -109,7 +118,7 @@ button:hover {
   transition: 0.3s;
 }
 
-input[type="radio"]:checked + .gender-box {
+input[type="radio"]:checked+.gender-box {
   background-color: #8e6909;
   color: white;
   border-color: #ca8906;
@@ -133,7 +142,7 @@ input[type="radio"]:checked + .gender-box {
   transition: 0.2s;
 }
 
-input[type="checkbox"]:checked + .prayer-option {
+input[type="checkbox"]:checked+.prayer-option {
   background-color: #184c00c9;
   color: #fbfffb;
   border-color: #008a07;
@@ -157,13 +166,14 @@ input[type="checkbox"]:checked + .prayer-option {
   padding: 10px;
   border-radius: 6px;
 }
+
 #history-section {
   max-width: 1000px;
   margin: 30px auto;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   overflow-x: auto;
 }
 
@@ -196,6 +206,7 @@ input[type="checkbox"]:checked + .prayer-option {
     font-size: 12px;
   }
 }
+
 /* Footer */
 #footer {
   background-color: #111;
@@ -249,47 +260,52 @@ input[type="checkbox"]:checked + .prayer-option {
     justify-content: center;
   }
 }
+
 input[type="radio"] {
   display: none;
 }
+
 ul {
   list-style-type: none;
   padding-left: 0;
 }
+
 .top-card {
-    background: rgba(222, 190, 123, 0.546);
-    padding: 16px 20px;
-    margin: 16px auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    font-family: sans-serif;
-  }
+  background: rgba(222, 190, 123, 0.546);
+  padding: 16px 20px;
+  margin: 16px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  font-family: sans-serif;
+}
 
-  .top-card h4 {
-    margin-bottom: 12px;
-    font-size: 15px;
-    text-align: center;
-    color: #000000;
-  }
+.top-card h4 {
+  margin-bottom: 12px;
+  font-size: 15px;
+  text-align: center;
+  color: #000000;
+}
 
-  .top-card ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
-  }
+.top-card ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
 
-  .top-card li {
-    padding: 6px 0;
-    font-size: 16px;
-    color: #222;
-  }
-  .overlay {
+.top-card li {
+  padding: 6px 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   z-index: -1;
-  pointer-events: none; /* ✅ This line allows clicks to pass through */
+  pointer-events: none;
+  /* ✅ This line allows clicks to pass through */
 }
