@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ml">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Prayer Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    button {
+      background-color: #c62828;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    input, select {
+      padding: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>📊 Admin Panel</h2>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search by Name">
+    <label for="classFilter">ക്ലാസ്:</label>
+    <select id="classFilter">
+      <option value="">All Classes</option>
+    </select>
+
+    <label for="datePicker">തിയതി:</label>
+    <input type="date" id="datePicker">
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>പേര്</th>
+        <th>ക്ലാസ്</th>
+        <th>score</th>
+        <th>നമസ്‌കാരങ്ങൾ</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="dataTableBody"></tbody>
+  </table>
+
+  <button onclick="downloadCSV()">Download CSV</button>
+
+  <script type="module">
+    import { database } from './firebase.js';
+    import { ref, get, remove } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+    const datePicker = document.getElementById('datePicker');
+    const tbody = document.getElementById('dataTableBody');
+    const searchInput = document.getElementById("searchInput");
+    const classFilter = document.getElementById("classFilter");
+
+    datePicker.valueAsDate = new Date();
+
+    let currentData = [];
+
+    function loadData(date) {
+      const dataRef = ref(database, `prayers/${date}`);
+      get(dataRef).then(snapshot => {
+        tbody.innerHTML = '';
+        classFilter.innerHTML = `<option value="">All Classes</option>`;
+        currentData = [];
+
+        if (!snapshot.exists()) {
+          tbody.innerHTML = '<tr><td colspan="5">Data ഇല്ല</td></tr>';
+          return;
+        }
+
+        const data = snapshot.val();
+        const classSet = new Set();
+
+        for (const name in data) {
+          const entry = data[name];
+          currentData.push({ name, ...entry });
+
+          if (entry.class) classSet.add(entry.class);
+        }
+
+        [...classSet].sort().forEach(cls => {
+          const option = document.createElement('option');
+          option.value = cls;
+          option.textContent = cls;
+          classFilter.appendChild(option);
+        });
+
+        renderTable();
+      });
+    }
+
+    function renderTable() {
+      const query = searchInput.value.toLowerCase();
+      const selectedClass = classFilter.value;
+      tbody.innerHTML = '';
+
+      const filteredData = currentData.filter(entry => {
+        const matchName = entry.name.toLowerCase().includes(query);
+        const matchClass = selectedClass === "" || entry.class === selectedClass;
+        return matchName && matchClass;
+      });
+
+      if (filteredData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">Match കിട്ടിയില്ല</td></tr>';
+        return;
+      }
+
+      filteredData.forEach(entry => {
+        const prayers = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
+          .filter(p => entry[p]).join(', ');
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.name}</td>
+          <td>${entry.class}</td>
+          <td>${entry.score ?? 0}</td>
+          <td>${prayers}</td>
+          <td><button onclick="deleteEntry('${datePicker.value}', '${entry.name}')">Delete</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    window.deleteEntry = function (date, name) {
+      if (!confirm(`"${name}"-ന്റെ prayer data ഈ തിയതിയിൽ നിന്ന് delete ചെയ്യണോ?`)) return;
+      const entryRef = ref(database, `prayers/${date}/${name}`);
+      remove(entryRef).then(() => {
+        alert("Deleted successfully ✅");
+        loadData(date);
+      });
+    }
+
+function downloadCSV() {
+  const table = document.querySelector("table");
+  if (!table) return alert("Table not found");
+
+  let csv = [];
+  const rows = table.querySelectorAll("tr");
+
+  rows.forEach(row => {
+    const cols = row.querySelectorAll("th, td");
+    const rowData = Array.from(cols).map(col => `"${col.innerText.trim()}"`);
+    csv.push(rowData.join(","));
+  });
+
+  const csvContent = csv.join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.setAttribute("download", "prayer_data.csv");
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+    // Filters
+    searchInput.addEventListener("input", renderTable);
+    classFilter.addEventListener("change", renderTable);
+    datePicker.addEventListener('change', () => loadData(datePicker.value));
+
+    // Initial load
+    loadData(datePicker.value);
+  </script>
+</body>
+
+</html>
