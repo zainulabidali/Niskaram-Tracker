@@ -8,31 +8,31 @@ const allStudents = {
   students3Female: ['Ayshath Muneeba', 'Maryam CA', 'Maryam Zahra', 'Maryam Ahmed Naseer', 'Fathimath Shifa', 'Rifa Fathima', 'Ayshath Shaza', 'Shama Fathima', 'Fathimath Shanza Mahzin', 'Maryam Mehk'],
 
 
-  students4Male: [, '🛠️'],
-  students4Female: [' ',],
+  students4Male: ['Ahmed anas', 'Muhammed shameem', 'Muhammed razik', 'Hisham', 'Muhammed Ihsan', 'Abdull adhil', 'Ibrahim zaman', 'Ahmed kabeer rifayi', 'Muhammed swalih', 'Ahmed nabeel', 'Zaid Abdullah', 'Faz Rahman', 'Ahmed anas s', 'Muhammed fadhal', 'Muhammed faz', 'Abdullah', 'Yusuf', 'Abdull sesan', 'Muhammed Shamil', 'Ahmed misthah', 'Abdullah aflah', '🛠️'],
+  students4Female: ['Aysha', 'Aysha lazima', 'Aysha shifana', 'Nafeesath laza', 'Fathimath rizna', 'Zahra Fathima', 'Fathima M'],
 
 
   students5Male: ['AHMED SHAMIL BK', 'IBRAHIM SAIS CM', 'MUHAMMED FAYIZ BN', 'MUHAMMED ADIL', 'MUHAMMED SHAMMAS S', 'MOIDEEN SHAZ', 'MUHAMMED JAZEEL', 'ABOOBACKAR SIDDIQUE UM', 'MUHAMMED SHAZIM', 'MUHAMMED SHAMMAS M', 'ZAHID ABBAS AA', '🛠️'],
   students5Female: ['FATHIMA FIDA', 'FATHIMA NOUFEERA KN', 'AYSHA ZAMA MARZIN', 'MARIYAM FABNAZ MA', 'NAFEESATH RIZA KH', 'FATHIMATH ZAKIYYA', 'KADEEJA HADIYA KA', 'AYSHA NOON TK', 'FATHIMA DILNA', 'ASIYA MA', 'AYSHATH RAHEEMA', 'AYSHATH IZHA', 'FATHIMATH FAHEEMA NA', 'FATHIMA CK', 'SHEZA FATHIMA PS', 'FATHIMA FALAQ CA'],
 
 
-  students6Male: ['MUHAMMED SIBLI', 'ABDUL RAHMAN JAVAD', 'RAMEEM ABOOBAKAR', 'LUKMANUL HAKEEM', 'ABDUL KADER ZIDAN', 'MUHAMMED MISBAH', 'ABDUL KADAR MIDLAJ', 'MUHAMMED AJAS', 'SAMMAS ABDULLA', 'AHMAD AJLAL', 'ABDULLA KS', 'ABDUL MAZHAR', 'MUHEENUDEEN SAHAD', 'MUHAMMED SAFI', 'FARHAN ABDULLA', 'ZAYD', 'ZIYAD', 'MUHAMMED ZAYAN', 'NASHITH MUHAMMED', 'ZAHID MUBARAK','🛠️'],
+  students6Male: ['MUHAMMED SIBLI', 'ABDUL RAHMAN JAVAD', 'RAMEEM ABOOBAKAR', 'LUKMANUL HAKEEM', 'ABDUL KADER ZIDAN', 'MUHAMMED MISBAH', 'ABDUL KADAR MIDLAJ', 'MUHAMMED AJAS', 'SAMMAS ABDULLA', 'AHMAD AJLAL', 'ABDULLA KS', 'ABDUL MAZHAR', 'MUHEENUDEEN SAHAD', 'MUHAMMED SAFI', 'FARHAN ABDULLA', 'ZAYD', 'ZIYAD', 'MUHAMMED ZAYAN', 'NASHITH MUHAMMED', 'ZAHID MUBARAK', '🛠️'],
   students6Female: ['FAHIMA CS', 'FARISA', 'AYSHA S', 'FATHIMA', 'FATHIMATH MUNAZAHA', 'AYSHATH DIYA', 'MARIYAM RUSHDA', 'FATHIMA KA', 'FATHIMATH SAFLA', 'AYISHATH RUSHDA', 'NAFEESATH MISRIYA', 'AYSHATH ZABA', 'RASHA FATHIMA', 'AYSHATH AFREENA', 'SHAMSEERA'],
 
 
-  students7Male: ['🛠️'],
-  students7Female: [],
+  students7Male: ['Moideen Muzammil','Muhammed Ajmal','Muhammed','Muhammed Anwer','Ahmed razeen','Muhammed Ameen','Abdull vahidh','Abdullah Sa-ad','Muhammed lamih','Moideen Sayan','Abubakar swahah','Midlaj Abdullah','Muhammed Anas','🛠️'],
+  students7Female: ['Fathima razeena','Ayshath hana','Fathimath sana','Ameena Fathima','Ayshath jumana','Raza rukiya','Fathima mufreena','zainaba farhana','Maryam farha','Hala Fathima','Fathima CH'],
 
 
-  students8Male: ['SWALIH MUHAZ K.M', 'SOOFI NIHAL T.A', 'MUHAMMED NABEEL E.A', 'MUHYUDHEEN MUBASHIR T.M', 'NIDHAL ABDULLA', 'AYMAN C.A', 'HAMID A.A', 'ABDULLA ANSAF M.M', 'ABDUL KHADER MIKFAR K.M', 'MUHAMMED SHINAS','🛠️'],
+  students8Male: ['SWALIH MUHAZ K.M', 'SOOFI NIHAL T.A', 'MUHAMMED NABEEL E.A', 'MUHYUDHEEN MUBASHIR T.M', 'NIDHAL ABDULLA', 'AYMAN C.A', 'HAMID A.A', 'ABDULLA ANSAF M.M', 'ABDUL KHADER MIKFAR K.M', 'MUHAMMED SHINAS', '🛠️'],
   students8Female: ['FATHIMA C.I', 'FATHIMA U.M', 'FATHIMA NAJA C.A', 'FATHIMA E.A', 'AYSHATH FAZNA D.A', 'FATHIMA NOOHA T.H'],
 
 
-  students9Male: ['SHUHAIM', 'ABDULLA AFEEF', 'ABDULLA FAHZIN', 'MUHAMMED RISHAL', 'AHMED SHAMMAS','🛠️'],
+  students9Male: ['SHUHAIM', 'ABDULLA AFEEF', 'ABDULLA FAHZIN', 'MUHAMMED RISHAL', 'AHMED SHAMMAS', '🛠️'],
   students9Female: ['ZAINABATH FAHIMA', 'AYSHATH ASNA', 'FATHIMA FIDHA', 'NADEEMA', 'FATHIMA RUKIYA', 'AYSHATH SAFLA', 'SHAZA MARIYAM', 'AYSHATH AFNA'],
 
 
-  students10Male: ['ABDULLA ASHIQ', 'ABDULLA', 'MOIDHEEN','🛠️'],
+  students10Male: ['ABDULLA ASHIQ', 'ABDULLA', 'MOIDHEEN', '🛠️'],
   students10Female: ['NAFEESATH NASBA', 'FATHIMATH THASLEEMA', 'NAFEESATH AMNA', 'NAFEESATH HAFIZA', 'AYSHA BEEVI', 'FATHIMA', 'SHAHZIYA',]
 };
 
